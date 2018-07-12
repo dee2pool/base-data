@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hngd.dao.EncodeDeviceMapper">
-  <resultMap id="BaseResultMap" type="com.hngd.model.EncodeDevice">
-    <id column="code" jdbcType="VARCHAR" property="code" />
+<mapper namespace="com.hngd.dao.VideoEncoderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hngd.model.VideoEncoderInfo">
+    <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
     <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
@@ -12,9 +12,10 @@
     <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="login_password" jdbcType="VARCHAR" property="loginPassword" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="install_address" jdbcType="VARCHAR" property="installAddress" />
     <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
     <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="vendor_name" jdbcType="VARCHAR" property="vendorName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,16 +77,16 @@
   </sql>
   <sql id="Base_Column_List">
     code, name, org_code, type_code, channel_count, ip_address, stream_port, login_name, 
-    login_password, remark, install_address, last_modify_time, vendor_id
+    login_password, remark, last_modify_time, vendor_id, org_name, vendor_name
   </sql>
-  <select id="selectByExample" parameterType="com.hngd.model.EncodeDeviceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hngd.model.VideoEncoderInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_encode_device
+    from vw_video_encoder
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,36 +94,26 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_encode_device
-    where code = #{code,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tb_encode_device
-    where code = #{code,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.hngd.model.EncodeDeviceExample">
-    delete from tb_encode_device
+  <delete id="deleteByExample" parameterType="com.hngd.model.VideoEncoderInfoExample">
+    delete from vw_video_encoder
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hngd.model.EncodeDevice">
-    insert into tb_encode_device (code, name, org_code, 
+  <insert id="insert" parameterType="com.hngd.model.VideoEncoderInfo">
+    insert into vw_video_encoder (code, name, org_code, 
       type_code, channel_count, ip_address, 
       stream_port, login_name, login_password, 
-      remark, install_address, last_modify_time, 
-      vendor_id)
+      remark, last_modify_time, vendor_id, 
+      org_name, vendor_name)
     values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, 
       #{typeCode,jdbcType=VARCHAR}, #{channelCount,jdbcType=NUMERIC}, #{ipAddress,jdbcType=VARCHAR}, 
       #{streamPort,jdbcType=NUMERIC}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{installAddress,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
-      #{vendorId,jdbcType=VARCHAR})
+      #{remark,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, #{vendorId,jdbcType=VARCHAR}, 
+      #{orgName,jdbcType=VARCHAR}, #{vendorName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hngd.model.EncodeDevice">
-    insert into tb_encode_device
+  <insert id="insertSelective" parameterType="com.hngd.model.VideoEncoderInfo">
+    insert into vw_video_encoder
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="code != null">
         code,
@@ -154,14 +145,17 @@
       <if test="remark != null">
         remark,
       </if>
-      <if test="installAddress != null">
-        install_address,
-      </if>
       <if test="lastModifyTime != null">
         last_modify_time,
       </if>
       <if test="vendorId != null">
         vendor_id,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="vendorName != null">
+        vendor_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -195,25 +189,28 @@
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="installAddress != null">
-        #{installAddress,jdbcType=VARCHAR},
-      </if>
       <if test="lastModifyTime != null">
         #{lastModifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="vendorId != null">
         #{vendorId,jdbcType=VARCHAR},
       </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorName != null">
+        #{vendorName,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hngd.model.EncodeDeviceExample" resultType="java.lang.Long">
-    select count(*) from tb_encode_device
+  <select id="countByExample" parameterType="com.hngd.model.VideoEncoderInfoExample" resultType="java.lang.Long">
+    select count(*) from vw_video_encoder
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_encode_device
+    update vw_video_encoder
     <set>
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
@@ -245,14 +242,17 @@
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
-      <if test="record.installAddress != null">
-        install_address = #{record.installAddress,jdbcType=VARCHAR},
-      </if>
       <if test="record.lastModifyTime != null">
         last_modify_time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.vendorId != null">
         vendor_id = #{record.vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgName != null">
+        org_name = #{record.orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vendorName != null">
+        vendor_name = #{record.vendorName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -260,7 +260,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_encode_device
+    update vw_video_encoder
     set code = #{record.code,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       org_code = #{record.orgCode,jdbcType=VARCHAR},
@@ -271,69 +271,12 @@
       login_name = #{record.loginName,jdbcType=VARCHAR},
       login_password = #{record.loginPassword,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
-      install_address = #{record.installAddress,jdbcType=VARCHAR},
       last_modify_time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
-      vendor_id = #{record.vendorId,jdbcType=VARCHAR}
+      vendor_id = #{record.vendorId,jdbcType=VARCHAR},
+      org_name = #{record.orgName,jdbcType=VARCHAR},
+      vendor_name = #{record.vendorName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hngd.model.EncodeDevice">
-    update tb_encode_device
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="orgCode != null">
-        org_code = #{orgCode,jdbcType=VARCHAR},
-      </if>
-      <if test="typeCode != null">
-        type_code = #{typeCode,jdbcType=VARCHAR},
-      </if>
-      <if test="channelCount != null">
-        channel_count = #{channelCount,jdbcType=NUMERIC},
-      </if>
-      <if test="ipAddress != null">
-        ip_address = #{ipAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="streamPort != null">
-        stream_port = #{streamPort,jdbcType=NUMERIC},
-      </if>
-      <if test="loginName != null">
-        login_name = #{loginName,jdbcType=VARCHAR},
-      </if>
-      <if test="loginPassword != null">
-        login_password = #{loginPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="installAddress != null">
-        install_address = #{installAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifyTime != null">
-        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="vendorId != null">
-        vendor_id = #{vendorId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where code = #{code,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hngd.model.EncodeDevice">
-    update tb_encode_device
-    set name = #{name,jdbcType=VARCHAR},
-      org_code = #{orgCode,jdbcType=VARCHAR},
-      type_code = #{typeCode,jdbcType=VARCHAR},
-      channel_count = #{channelCount,jdbcType=NUMERIC},
-      ip_address = #{ipAddress,jdbcType=VARCHAR},
-      stream_port = #{streamPort,jdbcType=NUMERIC},
-      login_name = #{loginName,jdbcType=VARCHAR},
-      login_password = #{loginPassword,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      install_address = #{installAddress,jdbcType=VARCHAR},
-      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      vendor_id = #{vendorId,jdbcType=VARCHAR}
-    where code = #{code,jdbcType=VARCHAR}
   </update>
 </mapper>

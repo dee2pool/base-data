@@ -6,95 +6,88 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ *视频编码设备
  */
-public class EncodeDeviceInfo {
+public class VideoEncoder {
     /**
-     *null
+     *设备代码
      */
+    @NotNull
     @Size(min=0,max=20)
     private String code;
 
     /**
-     *null
+     *设备名称
      */
+    @NotNull
     @Size(min=0,max=128)
     private String name;
 
     /**
-     *null
+     *所属组织代码
      */
+    @NotNull
     @Size(min=0,max=20)
     private String orgCode;
 
     /**
-     *null
+     *设备类型代码
      */
+    @NotNull
     @Size(min=0,max=3)
     private String typeCode;
 
     /**
-     *null
+     *设备通道数
      */
+    @NotNull
     private Integer channelCount;
 
     /**
-     *null
+     *设备ip地址
      */
+    @NotNull
     @Size(min=0,max=48)
     private String ipAddress;
 
     /**
-     *null
+     *设备取流端口
      */
+    @NotNull
     private Integer streamPort;
 
     /**
-     *null
+     *设备登录账号名称
      */
+    @NotNull
     @Size(min=0,max=120)
     private String loginName;
 
     /**
-     *null
+     *设备登录账号密码
      */
+    @NotNull
     @Size(min=0,max=128)
     private String loginPassword;
 
     /**
-     *null
+     *设备备注信息
      */
     @Size(min=0,max=2147483647)
     private String remark;
 
     /**
-     *null
+     *设备信息最后修改时间
      */
-    @Size(min=0,max=512)
-    private String installAddress;
-
-    /**
-     *null
-     */
+    @NotNull
     private Date lastModifyTime;
 
     /**
-     *null
+     *厂商Id
      */
+    @NotNull
     @Size(min=0,max=32)
     private String vendorId;
-
-    /**
-     *null
-     */
-    @Size(min=0,max=256)
-    private String orgName;
-
-    /**
-     *null
-     */
-    @Size(min=0,max=128)
-    private String vendorName;
 
     public String getCode() {
         return code;
@@ -176,14 +169,6 @@ public class EncodeDeviceInfo {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public String getInstallAddress() {
-        return installAddress;
-    }
-
-    public void setInstallAddress(String installAddress) {
-        this.installAddress = installAddress == null ? null : installAddress.trim();
-    }
-
     public Date getLastModifyTime() {
         return lastModifyTime;
     }
@@ -198,21 +183,5 @@ public class EncodeDeviceInfo {
 
     public void setVendorId(String vendorId) {
         this.vendorId = vendorId == null ? null : vendorId.trim();
-    }
-
-    public String getOrgName() {
-        return orgName;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName == null ? null : orgName.trim();
-    }
-
-    public String getVendorName() {
-        return vendorName;
-    }
-
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName == null ? null : vendorName.trim();
     }
 }

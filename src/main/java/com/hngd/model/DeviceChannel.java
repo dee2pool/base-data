@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
  */
 public class DeviceChannel {
     /**
-     *通道Id
+     *通道id
      */
     @Size(min=0,max=32)
     private String id;

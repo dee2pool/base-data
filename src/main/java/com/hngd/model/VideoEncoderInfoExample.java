@@ -7,14 +7,14 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class EncodeDeviceExample {
+public class VideoEncoderInfoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public EncodeDeviceExample() {
+    public VideoEncoderInfoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -788,76 +788,6 @@ public class EncodeDeviceExample {
             return (Criteria) this;
         }
 
-        public Criteria andInstallAddressIsNull() {
-            addCriterion("install_address is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressIsNotNull() {
-            addCriterion("install_address is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressEqualTo(String value) {
-            addCriterion("install_address =", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressNotEqualTo(String value) {
-            addCriterion("install_address <>", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressGreaterThan(String value) {
-            addCriterion("install_address >", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("install_address >=", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressLessThan(String value) {
-            addCriterion("install_address <", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressLessThanOrEqualTo(String value) {
-            addCriterion("install_address <=", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressLike(String value) {
-            addCriterion("install_address like", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressNotLike(String value) {
-            addCriterion("install_address not like", value, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressIn(List<String> values) {
-            addCriterion("install_address in", values, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressNotIn(List<String> values) {
-            addCriterion("install_address not in", values, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressBetween(String value1, String value2) {
-            addCriterion("install_address between", value1, value2, "installAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andInstallAddressNotBetween(String value1, String value2) {
-            addCriterion("install_address not between", value1, value2, "installAddress");
-            return (Criteria) this;
-        }
-
         public Criteria andLastModifyTimeIsNull() {
             addCriterion("last_modify_time is null");
             return (Criteria) this;
@@ -985,6 +915,146 @@ public class EncodeDeviceExample {
 
         public Criteria andVendorIdNotBetween(String value1, String value2) {
             addCriterion("vendor_id not between", value1, value2, "vendorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameIsNull() {
+            addCriterion("org_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameIsNotNull() {
+            addCriterion("org_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameEqualTo(String value) {
+            addCriterion("org_name =", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameNotEqualTo(String value) {
+            addCriterion("org_name <>", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameGreaterThan(String value) {
+            addCriterion("org_name >", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameGreaterThanOrEqualTo(String value) {
+            addCriterion("org_name >=", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameLessThan(String value) {
+            addCriterion("org_name <", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameLessThanOrEqualTo(String value) {
+            addCriterion("org_name <=", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameLike(String value) {
+            addCriterion("org_name like", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameNotLike(String value) {
+            addCriterion("org_name not like", value, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameIn(List<String> values) {
+            addCriterion("org_name in", values, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameNotIn(List<String> values) {
+            addCriterion("org_name not in", values, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameBetween(String value1, String value2) {
+            addCriterion("org_name between", value1, value2, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgNameNotBetween(String value1, String value2) {
+            addCriterion("org_name not between", value1, value2, "orgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameIsNull() {
+            addCriterion("vendor_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameIsNotNull() {
+            addCriterion("vendor_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameEqualTo(String value) {
+            addCriterion("vendor_name =", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameNotEqualTo(String value) {
+            addCriterion("vendor_name <>", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameGreaterThan(String value) {
+            addCriterion("vendor_name >", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameGreaterThanOrEqualTo(String value) {
+            addCriterion("vendor_name >=", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameLessThan(String value) {
+            addCriterion("vendor_name <", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameLessThanOrEqualTo(String value) {
+            addCriterion("vendor_name <=", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameLike(String value) {
+            addCriterion("vendor_name like", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameNotLike(String value) {
+            addCriterion("vendor_name not like", value, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameIn(List<String> values) {
+            addCriterion("vendor_name in", values, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameNotIn(List<String> values) {
+            addCriterion("vendor_name not in", values, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameBetween(String value1, String value2) {
+            addCriterion("vendor_name between", value1, value2, "vendorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andVendorNameNotBetween(String value1, String value2) {
+            addCriterion("vendor_name not between", value1, value2, "vendorName");
             return (Criteria) this;
         }
     }
