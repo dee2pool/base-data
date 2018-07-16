@@ -12,7 +12,6 @@ public class VideoEncoder {
     /**
      *设备代码
      */
-    @NotNull
     @Size(min=0,max=20)
     private String code;
 

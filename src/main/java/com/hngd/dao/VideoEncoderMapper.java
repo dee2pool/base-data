@@ -13,13 +13,21 @@ public interface VideoEncoderMapper {
 
     int deleteByExample(VideoEncoderExample example);
 
+    int deleteByPrimaryKey(String code);
+
     int insert(VideoEncoder record);
 
     int insertSelective(VideoEncoder record);
 
     List<VideoEncoder> selectByExample(VideoEncoderExample example);
 
+    VideoEncoder selectByPrimaryKey(String code);
+
     int updateByExampleSelective(@Param("record") VideoEncoder record, @Param("example") VideoEncoderExample example);
 
     int updateByExample(@Param("record") VideoEncoder record, @Param("example") VideoEncoderExample example);
+
+    int updateByPrimaryKeySelective(VideoEncoder record);
+
+    int updateByPrimaryKey(VideoEncoder record);
 }

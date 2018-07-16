@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hngd.dao.VideoEncoderMapper">
   <resultMap id="BaseResultMap" type="com.hngd.model.VideoEncoder">
-    <result column="code" jdbcType="VARCHAR" property="code" />
+    <id column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
     <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
@@ -92,6 +92,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_video_encoder
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_video_encoder
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
   <delete id="deleteByExample" parameterType="com.hngd.model.VideoEncoderExample">
     delete from tb_video_encoder
     <if test="_parameter != null">
@@ -256,5 +266,59 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hngd.model.VideoEncoder">
+    update tb_video_encoder
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCount != null">
+        channel_count = #{channelCount,jdbcType=NUMERIC},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="streamPort != null">
+        stream_port = #{streamPort,jdbcType=NUMERIC},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hngd.model.VideoEncoder">
+    update tb_video_encoder
+    set name = #{name,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      channel_count = #{channelCount,jdbcType=NUMERIC},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      stream_port = #{streamPort,jdbcType=NUMERIC},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      vendor_id = #{vendorId,jdbcType=VARCHAR}
+    where code = #{code,jdbcType=VARCHAR}
   </update>
 </mapper>
