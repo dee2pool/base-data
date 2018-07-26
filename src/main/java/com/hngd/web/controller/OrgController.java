@@ -34,11 +34,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hngd.common.entity.User;
 import com.hngd.common.error.ErrorCode;
 import com.hngd.common.result.Result;
 import com.hngd.common.util.GsonUtils;
 import com.hngd.common.web.RestResponses;
+import com.hngd.common.web.auth.UserCredential;
 import com.hngd.common.web.context.HttpRequestContext;
 import com.hngd.common.web.page.PagedData;
 import com.hngd.common.web.parameter.GsonEditor;
@@ -173,7 +173,7 @@ public class OrgController {
 	@RequestMapping(value = "/{orgCode}/chidlren", method = RequestMethod.GET)
 	public RestResponse<List<Organization>> getChildList(@PathVariable("orgCode") String orgCode) {
 		Object tag=HttpRequestContext.getRequestTag();
-		User user=GsonUtils.toObject((String)tag, User.class);
+		UserCredential user=(UserCredential)tag;
 		// 如果是获取根节点
 		List<Organization> list = null;
 		if ("-1".equals(orgCode)) {

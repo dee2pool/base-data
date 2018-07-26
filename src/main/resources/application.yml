@@ -3,7 +3,7 @@ spring:
     name: base-data
   datasource:
         name: test
-        url: jdbc:postgresql://192.168.0.156:5432/hnvmns6000
+        url: jdbc:postgresql://192.168.0.250:5432/hnvmns6000
         username: postgres
         password: hngd5618
         type: com.alibaba.druid.pool.DruidDataSource
