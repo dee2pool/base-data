@@ -136,4 +136,6 @@ public interface OrgService extends ICodeValidator
      * @备注:
      */
     public Organization getOrgInfobyCode(String orgCode);
+
+	public List<Organization> getOrgbyDomainCode(String domainCode);
 }

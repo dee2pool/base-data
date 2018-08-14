@@ -177,8 +177,8 @@ public class OrgController {
 		// 如果是获取根节点
 		List<Organization> list = null;
 		if ("-1".equals(orgCode)) {
-			orgCode = user.getOrgCode();
-			list=Arrays.asList(orgService.getOrgbyCode(orgCode));
+			String domainCode = user.getDomainCode();
+			list=orgService.getOrgbyDomainCode(domainCode);
 		} else {
 			list = orgService.getChildList(orgCode);
 		}

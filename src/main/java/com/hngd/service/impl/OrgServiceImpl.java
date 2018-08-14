@@ -7,8 +7,10 @@
 
 package com.hngd.service.impl;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -29,9 +31,12 @@ import com.hngd.common.util.SqlUtils;
 import com.hngd.common.web.page.PageHelper;
 import com.hngd.common.web.page.PagedData;
 import com.hngd.dao.AreaMapper;
+import com.hngd.dao.DomainOrgMapper;
 import com.hngd.dao.OrganizationMapper;
 import com.hngd.model.Area;
 import com.hngd.model.AreaExample;
+import com.hngd.model.DomainOrgExample;
+import com.hngd.model.DomainOrgKey;
 import com.hngd.model.Organization;
 import com.hngd.model.OrganizationExample;
 import com.hngd.service.OrgService;
@@ -49,6 +54,9 @@ public class OrgServiceImpl implements OrgService
     
     @Autowired
     private AreaMapper             areaDao;
+    
+    @Autowired
+    private DomainOrgMapper domainOrgDao;
 
     @Override
     public Result<String> addOrgnization(Organization org, String areaCode)
@@ -82,7 +90,7 @@ public class OrgServiceImpl implements OrgService
             logger.debug("the ids has no data");
             return ErrorCode.INVALID_PARAMETER;
         }
-        //TODO delete related resource,such as users,devices
+        //TODO delete related resource,such as users,devices,sub orgs
         OrganizationExample example = new OrganizationExample();
         example.createCriteria().andCodeIn(codes);
         int result = orgDao.deleteByExample(example);
@@ -238,4 +246,20 @@ public class OrgServiceImpl implements OrgService
         List<Organization> list = orgDao.selectByExample(example);
         return (!CollectionUtils.isEmpty(list)) ? list.get(0) : null;
     }
+
+	@Override
+	public List<Organization> getOrgbyDomainCode(String domainCode) {
+		DomainOrgExample example=new DomainOrgExample();
+		example.createCriteria().andDomainCodeEqualTo(domainCode);
+		List<DomainOrgKey> domainOrgs=domainOrgDao.selectByExample(example);
+		if(CollectionUtils.isEmpty(domainOrgs)){
+			return Collections.EMPTY_LIST;
+		}
+		List<String> orgCodes=domainOrgs.stream()
+				.map(DomainOrgKey::getOrgCode)
+				.collect(Collectors.toList());
+		OrganizationExample orgExample=new OrganizationExample();
+		orgExample.createCriteria().andCodeIn(orgCodes);
+		return orgDao.selectByExample(orgExample);
+	}
 }
