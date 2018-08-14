@@ -16,7 +16,7 @@ import com.hngd.common.exception.DBErrorException;
 import com.hngd.common.result.Result;
 import com.hngd.common.result.Results;
 import com.hngd.common.service.CodeUtils;
-import com.hngd.common.service.CodeUtils.CodeKey;
+import com.hngd.common.service.CodeKey;
 import com.hngd.common.util.SqlUtils;
 import com.hngd.common.util.UuidUtils;
 import com.hngd.common.web.page.PageHelper;

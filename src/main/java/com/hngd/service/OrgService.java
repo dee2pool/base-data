@@ -13,7 +13,7 @@ package com.hngd.service;
 import java.util.List;
 
 import com.hngd.common.result.Result;
-import com.hngd.common.service.ICodeValidator;
+import com.hngd.common.service.CodeValidator;
 import com.hngd.common.web.page.PagedData;
 import com.hngd.model.Area;
 import com.hngd.model.Organization;
@@ -22,7 +22,7 @@ import com.hngd.model.Organization;
 /**
  * @author tqd
  */
-public interface OrgService extends ICodeValidator
+public interface OrgService extends CodeValidator
 {
     /**
      * 添加组织机构

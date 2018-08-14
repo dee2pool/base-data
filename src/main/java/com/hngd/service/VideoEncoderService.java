@@ -1,12 +1,12 @@
 package com.hngd.service;
 
 import com.hngd.common.result.Result;
-import com.hngd.common.service.ICodeValidator;
+import com.hngd.common.service.CodeValidator;
 import com.hngd.common.web.page.PagedData;
 import com.hngd.model.VideoEncoder;
 import com.hngd.model.VideoEncoderInfo;
 
-public interface VideoEncoderService extends ICodeValidator{
+public interface VideoEncoderService extends CodeValidator{
 
 	Result<String> addVideoEncoder(VideoEncoder videoEncoder);
 

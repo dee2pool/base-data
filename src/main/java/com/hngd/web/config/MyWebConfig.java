@@ -6,26 +6,27 @@ import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.hngd.common.util.GsonUtils;
 import com.hngd.common.web.parameter.RequestBodyConverter;
-import com.hngd.common.web.result.GsonHttpMessageConverter;
 import com.hngd.web.interceptor.HttpRequestInterceptor;
 
 @Configuration
-public class MyWebConfig extends WebMvcConfigurerAdapter {
+public class MyWebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HttpRequestInterceptor());
-		super.addInterceptors(registry);
 	}
 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(new GsonHttpMessageConverter());
-		super.configureMessageConverters(converters);
+		GsonHttpMessageConverter gmc=new GsonHttpMessageConverter();
+		gmc.setGson(GsonUtils.getGson());
+		converters.add(gmc);
 	}
 	
 	@Bean
