@@ -32,3 +32,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://192.168.0.141:12330/eureka,http://192.168.0.142:12330/eureka
+instance:
+   hostname: 192.168.0.159
+loggin:
+   config:./config/log4j2.xml
+ 
