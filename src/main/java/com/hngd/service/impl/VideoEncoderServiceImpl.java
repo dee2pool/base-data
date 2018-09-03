@@ -22,6 +22,7 @@ import com.hngd.common.util.UuidUtils;
 import com.hngd.common.web.page.PageHelper;
 import com.hngd.common.web.page.PagedData;
 import com.hngd.dao.DeviceChannelMapper;
+import com.hngd.dao.OperateInfoViewMapper;
 import com.hngd.dao.VideoEncoderInfoMapper;
 import com.hngd.dao.VideoEncoderMapper;
 import com.hngd.model.DeviceChannel;
@@ -46,6 +47,7 @@ public class VideoEncoderServiceImpl implements VideoEncoderService {
 	@Autowired
 	private DeviceChannelMapper deviceChannelDao;
  
+	private OperateInfoViewMapper oivDao;
 
 	@Transactional(isolation=Isolation.SERIALIZABLE)
 	@Override
@@ -154,5 +156,11 @@ public class VideoEncoderServiceImpl implements VideoEncoderService {
 	public CodeMapper getCodeMapper() {
 		return codeDao;
 	}
+	@Override
+	public Result<List<String>> addDataSyncList() {
+		
+		return null;
+	}
  
+	
 }

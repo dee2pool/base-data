@@ -1,5 +1,7 @@
 package com.hngd.service;
 
+import java.util.List;
+
 import com.hngd.common.result.Result;
 import com.hngd.common.service.CodeValidator;
 import com.hngd.common.web.page.PagedData;
@@ -15,6 +17,6 @@ public interface VideoEncoderService extends CodeValidator{
 	Result<PagedData<VideoEncoderInfo>> getVideoEncoderList(Integer pageNo, Integer pageSize, String resName,
 			String ipAddress);
 	
-	
+	Result<List<String>> addDataSyncList();
 
 }
