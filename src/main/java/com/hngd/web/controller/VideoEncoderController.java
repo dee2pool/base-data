@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hngd.common.error.ErrorCode;
@@ -62,7 +64,7 @@ public class VideoEncoderController {
 	 * @since 1.0.0
 	 * @time 2018年7月13日 下午3:28:53
 	 */
-	@DeleteMapping("/delete")
+	@PostMapping("/delete")
 	public RestResponse<Void> deleteVideoEncoder(@RequestBody @RequestParam("videoEncoderCode")String videoEncoderCode){
 		Integer result=videoEncoderService.deleteVideoEncoderByCode(videoEncoderCode);
 		if(ErrorCode.NO_ERROR.equals(result)){
@@ -84,7 +86,8 @@ public class VideoEncoderController {
 	 * @since 1.0.0
 	 * @time 2018年7月16日 上午8:17:22
 	 */
-	@DeleteMapping("/list")
+	@ResponseBody
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public RestResponse<List<VideoEncoderInfo>> getVideoEncoderList(@RequestParam("pageNo")Integer pageNo,
 			@RequestParam("pageSize")Integer pageSize,
 			@RequestParam(value="resName",required=false)String resName,
