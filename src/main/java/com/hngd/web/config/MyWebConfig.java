@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -29,8 +30,8 @@ public class MyWebConfig implements WebMvcConfigurer {
 		converters.add(gmc);
 	}
 	
-	@Bean
-    public RequestBodyConverter getConversionService() {  
-        return new RequestBodyConverter();  
-    } 
+	@Override
+	public void addFormatters(FormatterRegistry registry) {
+		registry.addConverter(new RequestBodyConverter());
+	}
 }
