@@ -20,14 +20,11 @@ import com.hngd.common.web.page.PageHelper;
 import com.hngd.common.web.page.PagedData;
 import com.hngd.dao.PersonnelInfoMapper;
 import com.hngd.dao.PersonnelMapper;
-import com.hngd.dao.UserMapper;
 import com.hngd.model.Personnel;
 import com.hngd.model.PersonnelExample;
 import com.hngd.model.PersonnelInfo;
 import com.hngd.model.PersonnelInfoExample;
-import com.hngd.model.User;
 import com.hngd.service.PersonService;
-import com.hngd.util.PasswordUtils;
 
 @Service
 public class PersonServiceImpl implements PersonService{
@@ -40,8 +37,6 @@ public class PersonServiceImpl implements PersonService{
 	@Autowired
 	private PersonnelInfoMapper piDao;
 	
-	@Autowired
-	private UserMapper          userDao;
 
 	@Override
 	public Result<String> addPersonnel(Personnel ps) {
@@ -58,19 +53,6 @@ public class PersonServiceImpl implements PersonService{
 
 		int result = dao.insert(ps);
 		if(result > 0) {
-			if(ps.getUserName() != null && ps.getUsePwd() != null) {
-				User u = new User();
-				u.setId(UuidUtils.uuid());
-				u.setLoginName(ps.getUserName());
-				u.setLoginPassword(ps.getUsePwd());
-				u.setGender(ps.getSex());
-				u.setEmail(ps.getEmail());
-				u.setState((short) 1);
-				u.setDomainCode("-1");
-				PasswordUtils.processUser(u);
-				userDao.insert(u);
-			}
-			
 			return Results.newSuccessResult(ps.getId());
 		}else {
 			return Results.newFailResult(ErrorCode.DB_ERROR, "添加人员信息失败");
