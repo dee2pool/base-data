@@ -79,6 +79,11 @@ public class OrgController {
 	@PostMapping("/add")
 	public RestResponse<String> addOrg(@RequestBody @RequestParam("org") Organization org,
 			@RequestParam("areaCode") String areaCode) {
+		
+		UserCredential credential=(UserCredential) HttpRequestContext.getRequestTag();
+		org.setCreateTime(new Date());
+		org.setCreatorId(credential.getId());
+		
 		Result<String> result = orgService.addOrgnization(org, areaCode);
 		if (result.isSuccess()) {
 			// 通知内存中的组织结构信息需要更新

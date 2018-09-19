@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<version>2.0.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -80,7 +80,7 @@
 		<dependency>
 			<groupId>com.hngd.common</groupId>
 			<artifactId>common-web</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.2</version>
 		</dependency>
 		
 	</dependencies>
@@ -117,13 +117,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- 
+			
 			<plugin>
 				<groupId>com.hngd.tool</groupId>
 				<artifactId>maven-codegen-plugin</artifactId>
 				<version>0.0.1</version>
 				<configuration>
-					<serviceUrl>/auth</serviceUrl>
+					<serviceUrl>/base-data</serviceUrl>
 				</configuration>
 				<executions>
 					<execution>
@@ -135,7 +135,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			 -->
+			
 		</plugins>
 	</build>
 

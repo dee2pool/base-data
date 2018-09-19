@@ -12,14 +12,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.hngd.common.dao.CodeMapper;
 import com.hngd.common.error.ErrorCode;
@@ -76,6 +74,7 @@ public class OrgServiceImpl implements OrgService
         if (orgCode == null){
             return Results.newFailResult(ErrorCode.SERVER_INTERNAL_ERROR, "生成组织代码失败");
         }
+        org.setAreaCode(areaCode);
         org.setCode(orgCode);
         if (orgDao.insertSelective(org) > 0){
             return Results.newSuccessResult(orgCode);
