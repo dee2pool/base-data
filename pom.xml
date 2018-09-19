@@ -89,14 +89,8 @@
 			<version>0.0.1</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.hngd.jgpt</groupId>
-			<artifactId>MediaGatewayConfigService</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		
 	</dependencies>
-<!-- 
+
 	<repositories>
 		<repository>
 			<id>hnlocal</id>
@@ -110,7 +104,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
- -->
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -129,6 +123,25 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- 
+			<plugin>
+				<groupId>com.hngd.tool</groupId>
+				<artifactId>maven-codegen-plugin</artifactId>
+				<version>0.0.1</version>
+				<configuration>
+					<serviceUrl>/auth</serviceUrl>
+				</configuration>
+				<executions>
+					<execution>
+						<id>codegen</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>ajax-gen</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			 -->
 		</plugins>
 	</build>
 

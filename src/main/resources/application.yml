@@ -3,9 +3,9 @@ spring:
     name: base-data
   datasource:
         name: test
-        url: jdbc:postgresql://192.168.0.250:5432/hnvmns6000
+        url: jdbc:postgresql://192.168.0.142:5432/hnvmns-base-data
         username: postgres
-        password: hngd5618
+        password: Admin12345
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: org.postgresql.Driver
         filters: stat
