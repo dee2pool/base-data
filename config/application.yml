@@ -1,3 +1,4 @@
+debug: true
 spring:
   application:
     name: base-data
@@ -34,6 +35,7 @@ eureka:
       defaultZone: http://192.168.0.144:12331/eureka,http://192.168.0.144:12332/eureka
   instance:
     hostname: 192.168.0.239
-loggin:
-   config:./config/log4j2.xml
+logging:
+   config: ./config/log4j2.xml
+
  
