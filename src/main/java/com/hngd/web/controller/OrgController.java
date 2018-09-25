@@ -205,7 +205,7 @@ public class OrgController {
 	 * @time 2015年12月30日 上午9:32:58
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public RestResponse<Void> deleteOrgByCode(@RequestParam("orgCode") String orgCode) {
 	    Integer result = orgService.deleteOrgByCodes(Arrays.asList(orgCode));
 		if (ErrorCode.NO_ERROR.equals(result)) {
