@@ -135,7 +135,7 @@ public class PersonnelController {
 	 */
 	@PostMapping(value = "/update/depId")
 	public RestResponse<Void> updateDepIdByPersonnelId(@RequestParam("depId") String depId, 
-			@RequestBody @RequestParam("depId") List<String> personIds){
+			@RequestBody @RequestParam("personIds") List<String> personIds){
 		Integer result = service.updateDepIdByPersonnelId(depId, personIds);
 		if(ErrorCode.NO_ERROR.equals(result)) {
 			return RestResponses.newSuccessResponse("修改部门成功");
