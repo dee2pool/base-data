@@ -93,6 +93,7 @@ public class OrgServiceImpl implements OrgService
         OrganizationExample example = new OrganizationExample();
         example.createCriteria().andCodeIn(codes);
         int result = orgDao.deleteByExample(example);
+        deleteOrgByParentCodes(codes);
         if (result > 0){
             return ErrorCode.NO_ERROR;
         } else{
@@ -100,6 +101,17 @@ public class OrgServiceImpl implements OrgService
         }
     }
 
+    private Integer deleteOrgByParentCodes(List<String> parentCodes) {
+    	OrganizationExample example = new OrganizationExample();
+    	example.createCriteria().andParentCodeIn(parentCodes);
+    	int result = orgDao.deleteByExample(example);
+    	if(result > 0) {
+    		return ErrorCode.NO_ERROR;
+    	}else {
+    		return ErrorCode.TARGET_NOT_FOUND;
+    	}
+    }
+    
     @Override
     public Integer updateOrgByCode(String orgCode, Organization org){
         if (StringUtils.isEmpty(orgCode)){
