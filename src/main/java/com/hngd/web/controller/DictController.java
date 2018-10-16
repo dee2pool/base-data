@@ -255,7 +255,7 @@ public class DictController {
 	
 	/**
 	 * 根据字典code查询设备类型列表
-	 * @param dictCode
+	 * @param dictCode 字典code
 	 * @return
 	 */
 	@ResponseBody
@@ -271,12 +271,12 @@ public class DictController {
 	
 	/**
 	 * 根据字典code查询设备大类列表
-	 * @param dictCode
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/device/typeByparentCode", method = RequestMethod.GET)
-	public RestResponse<List<Dict>> DeviceTypeByparentCode(@RequestParam("dictCode") String dictCode){
+	public RestResponse<List<Dict>> DeviceTypeByparentCode(){
+		String dictCode = "deviceType";
 		List<Dict>  list = service.getChildList(dictCode);
 		if(list != null) {
 			return RestResponses.newSuccessResponse("查询成功", list.size(), list);
