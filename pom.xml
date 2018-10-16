@@ -54,7 +54,7 @@
 		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
+			<artifactId>druid-spring-boot-starter</artifactId>
 			<version>1.1.10</version>
 		</dependency>
 		<dependency>
@@ -78,9 +78,9 @@
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.hngd.common</groupId>
-			<artifactId>common-web</artifactId>
-			<version>0.0.2</version>
+			<groupId>com.hngd.vmns</groupId>
+			<artifactId>hnvmns-web-spring-boot-starter</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>
@@ -128,7 +128,7 @@
 				<executions>
 					<execution>
 						<id>codegen</id>
-						<phase>compile</phase>
+						<phase>post-compile</phase>
 						<goals>
 							<goal>ajax-gen</goal>
 						</goals>
