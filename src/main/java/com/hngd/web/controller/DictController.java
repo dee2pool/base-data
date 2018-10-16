@@ -133,7 +133,7 @@ public class DictController {
 	}
 	
 	/**
-	 * 根据字典code,获取该子节点信心
+	 * 根据字典code,获取该子节点信息
 	 * @param dictCode
 	 * @return
 	 */
@@ -146,7 +146,6 @@ public class DictController {
 		}else {
 			return RestResponses.newFailResponse(ErrorCode.INVALID_PARAMETER, "查询子字典信息失败");
 		}
-		
 	}
 	
 	/**
@@ -251,6 +250,38 @@ public class DictController {
 			return RestResponses.newSuccessResponse("查询成功", result.size(), result);
 		}else {
 			return RestResponses.newFailResponse(ErrorCode.SERVER_INTERNAL_ERROR, "查询失败");
+		}
+	}
+	
+	/**
+	 * 根据字典code查询设备类型列表
+	 * @param dictCode
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/device/typeByDictCode", method = RequestMethod.GET)
+	public RestResponse<List<DictDetail>> DeviceTypeByDictCode(@RequestParam("dictCode") String dictCode){
+		List<DictDetail> result =service.getDictDetailByDictCode(dictCode);
+		if(result != null) {
+			return RestResponses.newSuccessResponse("查询成功", result.size(), result);
+		}else {
+			return RestResponses.newFailResponse(ErrorCode.SERVER_INTERNAL_ERROR, "查询失败");
+		}
+	}
+	
+	/**
+	 * 根据字典code查询设备大类列表
+	 * @param dictCode
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/device/typeByparentCode", method = RequestMethod.GET)
+	public RestResponse<List<Dict>> DeviceTypeByparentCode(@RequestParam("dictCode") String dictCode){
+		List<Dict>  list = service.getChildList(dictCode);
+		if(list != null) {
+			return RestResponses.newSuccessResponse("查询成功", list.size(), list);
+		}else {
+			return RestResponses.newFailResponse(ErrorCode.INVALID_PARAMETER, "查询失败");
 		}
 	}
 }
