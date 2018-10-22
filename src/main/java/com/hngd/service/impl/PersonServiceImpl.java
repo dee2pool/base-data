@@ -79,7 +79,7 @@ public class PersonServiceImpl implements PersonService{
 		}
 		PersonnelExample example = new PersonnelExample();
 		example.createCriteria().andIdEqualTo(id);
-		int result = dao.updateByExample(ps, example);
+		int result = dao.updateByExampleSelective(ps, example);
 		if(result > 0) {
 			return ErrorCode.NO_ERROR;
 		}else {

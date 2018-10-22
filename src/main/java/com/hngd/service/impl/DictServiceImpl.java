@@ -81,7 +81,7 @@ public class DictServiceImpl implements DictService {
 		
 		DictExample examle = new DictExample();
 		examle.createCriteria().andIdEqualTo(id);
-		int result = dao.updateByExample(d, examle);
+		int result = dao.updateByExampleSelective(d, examle);
 		if(result > 0){
 			return ErrorCode.NO_ERROR;
 		}else {
@@ -168,7 +168,7 @@ public class DictServiceImpl implements DictService {
 		}
 		DictDetailExample example = new DictDetailExample();
 		example.createCriteria().andIdEqualTo(id);
-		int result = deDao.updateByExample(dd, example);
+		int result = deDao.updateByExampleSelective(dd, example);
 		if(result > 0) {
 			return ErrorCode.NO_ERROR;
 		}else {
