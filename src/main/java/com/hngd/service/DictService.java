@@ -35,4 +35,6 @@ public interface DictService {
 	List<DictDetail> getDictDetailByDictCode(String dictCode);
 	
 	Integer updateDetailByDictCode(String dictCode, List<String> ids);
+	
+	List<DictDetail> getDictDetailByDetailCode(String detailCode);
 }

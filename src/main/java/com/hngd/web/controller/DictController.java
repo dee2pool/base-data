@@ -284,4 +284,21 @@ public class DictController {
 			return RestResponses.newFailResponse(ErrorCode.INVALID_PARAMETER, "查询失败");
 		}
 	}
+	
+	/**
+	 * 根据字典详情code获取字典详情信息
+	 * @param detailCode  字典详情code
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/detailCode/list", method = RequestMethod.GET)
+	public RestResponse<List<DictDetail>> getDictDetailByDetailCode(@RequestParam("detailCode") String detailCode){
+		List<DictDetail> result = service.getDictDetailByDetailCode(detailCode);
+		if(result != null) {
+			return RestResponses.newSuccessResponse("获取成功", result.size(), result);
+		}else {
+			return RestResponses.newFailResponse(ErrorCode.INVALID_PARAMETER, "获取失败");
+		}
+	}
+	
 }

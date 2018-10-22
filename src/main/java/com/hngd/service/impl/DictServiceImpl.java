@@ -222,4 +222,15 @@ public class DictServiceImpl implements DictService {
 		return null;
 	}
 
+	@Override
+	public List<DictDetail> getDictDetailByDetailCode(String detailCode) {
+		if(StringUtils.isEmpty(detailCode)) {
+			logger.error("the detailCode is empty");
+			return null;
+		}
+		DictDetailExample example = new DictDetailExample();
+		example.createCriteria().andDetailCodeEqualTo(detailCode);
+		return deDao.selectByExample(example);
+	}
+
 }
