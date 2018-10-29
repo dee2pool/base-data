@@ -16,7 +16,7 @@ public interface DictService {
 	
 	Integer updateDict(String id, Dict d);
 	
-	Integer deleteDict(List<String> ids);
+	Integer deleteDict(List<String> codes);
 	
 	Result<PagedData<Dict>> getDictList(Integer pageNo, Integer pageSize, String dictCode, String name);
 	
@@ -37,4 +37,6 @@ public interface DictService {
 	Integer updateDetailByDictCode(String dictCode, List<String> ids);
 	
 	List<DictDetail> getDictDetailByDetailCode(String detailCode);
+	
+	Integer deleteDictByParentCode(List<String> parenCodes);
 }
