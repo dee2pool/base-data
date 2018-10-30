@@ -90,9 +90,23 @@ public class DictServiceImpl implements DictService {
 	}
 
 	@Override
-	public Integer deleteDict(List<String> ids) {
+	public Integer deleteDict(List<String> codes) {
+		
 		DictExample example = new DictExample();
-		example.createCriteria().andIdIn(ids);
+		example.createCriteria().andDictCodeIn(codes);
+		int result = dao.deleteByExample(example);
+		deleteDictByParentCode(codes);
+		if(result > 0) {
+			return ErrorCode.NO_ERROR;
+		}else {
+			return ErrorCode.TARGET_NOT_FOUND;
+		}
+	}
+	
+	@Override
+	public Integer deleteDictByParentCode(List<String> parenCodes) {
+		DictExample example = new DictExample();
+		example.createCriteria().andDictParentCodeIn(parenCodes);
 		int result = dao.deleteByExample(example);
 		if(result > 0) {
 			return ErrorCode.NO_ERROR;
@@ -163,9 +177,7 @@ public class DictServiceImpl implements DictService {
 			logger.error("the id is empty");
 			return ErrorCode.INVALID_PARAMETER;
 		}
-		if(existDetailName(dd.getDetailValue(), dd.getDetailCode())) {
-			return ErrorCode.INVALID_PARAMETER;
-		}
+
 		DictDetailExample example = new DictDetailExample();
 		example.createCriteria().andIdEqualTo(id);
 		int result = deDao.updateByExampleSelective(dd, example);
@@ -232,5 +244,4 @@ public class DictServiceImpl implements DictService {
 		example.createCriteria().andDetailCodeEqualTo(detailCode);
 		return deDao.selectByExample(example);
 	}
-
 }

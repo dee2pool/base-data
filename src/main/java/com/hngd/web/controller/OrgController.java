@@ -70,6 +70,7 @@ public class OrgController {
 	 *            待添加组织的信息
 	 * @param areaCode
 	 *            地区代码
+	 * @param domainCode 域代码
 	 * @return
 	 * @since 0.0.1
 	 * @author tqd
@@ -78,13 +79,13 @@ public class OrgController {
 	@ResponseBody
 	@PostMapping("/add")
 	public RestResponse<String> addOrg(@RequestBody @RequestParam("org") Organization org,
-			@RequestParam("areaCode") String areaCode) {
+			@RequestParam("areaCode") String areaCode, @RequestParam("domainCode") String domainCode) {
 		
 		UserCredential credential=(UserCredential) HttpRequestContext.getRequestTag();
 		org.setCreateTime(new Date());
 		org.setCreatorId(credential.getId());
 		
-		Result<String> result = orgService.addOrgnization(org, areaCode);
+		Result<String> result = orgService.addOrgnization(org, areaCode, domainCode);
 		if (result.isSuccess()) {
 			// 通知内存中的组织结构信息需要更新
 			return RestResponses.newSuccessResponse("添加组织机构成功", 1, result.getData());
@@ -246,17 +247,17 @@ public class OrgController {
 	 * @since 0.0.1
 	 * @time 2016年9月26日 下午2:20:31
 	 */
-	@ResponseBody
-	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
-	public RestResponse<List<Organization>> listAllOrg() {
-	    List<Organization> list = orgService.listAllOrgs();
-		if (list != null) {
-			return RestResponses.newSuccessResponse("查询组织信息成功", list.size(), list);
-		} else {
-			return RestResponses.newFailResponse( ErrorCode.DB_ERROR,"查询组织信息失败");
-		}
-	
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
+//	public RestResponse<List<Organization>> listAllOrg() {
+//	    List<Organization> list = orgService.listAllOrgs();
+//		if (list != null) {
+//			return RestResponses.newSuccessResponse("查询组织信息成功", list.size(), list);
+//		} else {
+//			return RestResponses.newFailResponse( ErrorCode.DB_ERROR,"查询组织信息失败");
+//		}
+//	
+//	}
 
 	/**
 	 * 查询一个组织信息

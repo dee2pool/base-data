@@ -96,13 +96,13 @@ public class DictController {
 	
 	/**
 	 * 根据id删除字典信息
-	 * @param ids
+	 * @param codes 字典代码集合
 	 * @return
 	 */
 	@ResponseBody
 	@PostMapping("/dict/delete")
-	public RestResponse<Void> deleteDictByIds(@RequestParam("ids") List<String> ids){
-		Integer result = service.deleteDict(ids);
+	public RestResponse<Void> deleteDictByIds(@RequestParam("codes") List<String> codes){
+		Integer result = service.deleteDict(codes);
 		if(ErrorCode.NO_ERROR.equals(result)) {
 			return RestResponses.newSuccessResponse("删除字典信息成功");
 		}else {

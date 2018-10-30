@@ -57,7 +57,7 @@ public class OrgServiceImpl implements OrgService
     private DomainOrgMapper domainOrgDao;
 
     @Override
-    public Result<String> addOrgnization(Organization org, String areaCode)
+    public Result<String> addOrgnization(Organization org, String areaCode, String domainCode)
     {
         if (StringUtils.isEmpty(areaCode)){
             logger.debug("the org is null or areaCode is empty");
@@ -76,7 +76,14 @@ public class OrgServiceImpl implements OrgService
         }
         org.setAreaCode(areaCode);
         org.setCode(orgCode);
+        
         if (orgDao.insertSelective(org) > 0){
+			DomainOrgKey domainOrg=new DomainOrgKey();
+			domainOrg.setDomainCode(domainCode);
+			domainOrg.setOrgCode(orgCode);
+			if(domainOrgDao.insertSelective(domainOrg)<0)  {
+				throw new DBErrorException();
+			}
             return Results.newSuccessResult(orgCode);
         } else{
             return Results.newFailResult(ErrorCode.DB_ERROR,"组织数据写入数据库失败");
@@ -94,6 +101,7 @@ public class OrgServiceImpl implements OrgService
         example.createCriteria().andCodeIn(codes);
         int result = orgDao.deleteByExample(example);
         deleteOrgByParentCodes(codes);
+        deleteDomainOrgByOrgCode(codes);
         if (result > 0){
             return ErrorCode.NO_ERROR;
         } else{
@@ -105,6 +113,17 @@ public class OrgServiceImpl implements OrgService
     	OrganizationExample example = new OrganizationExample();
     	example.createCriteria().andParentCodeIn(parentCodes);
     	int result = orgDao.deleteByExample(example);
+    	if(result > 0) {
+    		return ErrorCode.NO_ERROR;
+    	}else {
+    		return ErrorCode.TARGET_NOT_FOUND;
+    	}
+    }
+    
+    private Integer deleteDomainOrgByOrgCode(List<String> orgCodes) {
+    	DomainOrgExample example = new DomainOrgExample();
+    	example.createCriteria().andOrgCodeIn(orgCodes);
+    	int result = domainOrgDao.deleteByExample(example);
     	if(result > 0) {
     		return ErrorCode.NO_ERROR;
     	}else {
