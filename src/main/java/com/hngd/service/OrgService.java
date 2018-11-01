@@ -65,7 +65,7 @@ public interface OrgService extends CodeValidator
      * @时间:2015年11月16日 下午3:56:34
      * @备注:
      */
-    public Result<PagedData<Organization>> getOrgList(Integer pageNo,Integer pageSize,String orgName);
+    public Result<PagedData<Organization>> getOrgList(Integer pageNo,Integer pageSize,String orgName, String orgCode);
 
     /**
      * 判断是否存在组织名称 orgName

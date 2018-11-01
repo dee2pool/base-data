@@ -154,8 +154,9 @@ public class OrgController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public RestResponse<List<Organization>> getOrgList(@RequestParam( "pageNo") Integer pageNo,
 			@RequestParam( "pageSize") Integer pageSize,
-			@RequestParam( value="orgName",required=false) String orgName) {
-		Result<PagedData<Organization>> p = orgService.getOrgList(pageNo,pageSize,orgName);
+			@RequestParam( value="orgName",required=false) String orgName,
+			@RequestParam(value="orgCode",required=false) String orgCode) {
+		Result<PagedData<Organization>> p = orgService.getOrgList(pageNo,pageSize,orgName,orgCode);
 		if (p .isSuccess()) {
 		    List<Organization> list = p.getData().getResult();
 			Long total = p.getData().getTotal();
