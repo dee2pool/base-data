@@ -7,6 +7,7 @@
 
 package com.hngd.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -147,11 +148,15 @@ public class OrgServiceImpl implements OrgService
     }
 
     @Override
-    public Result<PagedData<Organization>> getOrgList(Integer pageNo,Integer pageSize,String orgName){
+    public Result<PagedData<Organization>> getOrgList(Integer pageNo,Integer pageSize,String orgName, String orgCode){
         OrganizationExample example = new OrganizationExample();
         OrganizationExample.Criteria criteria = example.createCriteria();
         if(!StringUtils.isEmpty(orgName)){
             criteria.andNameLike(SqlUtils.wrapLike(orgName));            	
+        }
+        if(!StringUtils.isEmpty(orgCode)) {
+        	List<String> orgCodes = getAllChildOrgCodes(orgCode);
+        	criteria.andCodeIn(orgCodes);
         }
         PagedData<Organization> pr = PageHelper.startPage(pageNo, pageSize);
         pr.setResultAndEnd(orgDao.selectByExample(example));
@@ -291,5 +296,16 @@ public class OrgServiceImpl implements OrgService
 		OrganizationExample orgExample=new OrganizationExample();
 		orgExample.createCriteria().andCodeIn(orgCodes);
 		return orgDao.selectByExample(orgExample);
+	}
+	
+	private List<String> getAllChildOrgCodes(String orgCode){
+		List<Organization> orgs = getOrgsByOrgCode(orgCode);
+		List<String> orgCodes = new ArrayList<String>();
+		if(orgs != null) {
+			for(Organization org : orgs) {
+				orgCodes.add(org.getCode());
+			}
+		}
+		return orgCodes;
 	}
 }
