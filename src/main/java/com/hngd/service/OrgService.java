@@ -32,7 +32,7 @@ public interface OrgService extends CodeValidator
      * @author tqd
      * @since 0.0.1
      */
-    public Result<String> addOrgnization(Organization org, String areaCode, String domainCode);
+    public Result<String> addOrgnization(Organization org, String areaCode);
 
     /**
      * 根据组织编码删除组织
