@@ -75,10 +75,7 @@ public class DictServiceImpl implements DictService {
 		if(StringUtils.isEmpty(id)) {
 			return ErrorCode.INVALID_PARAMETER;
 		}
-		if(existName(d.getDictName(),d.getDictCode())) {
-			return ErrorCode.INVALID_PARAMETER;
-		}
-		
+
 		DictExample examle = new DictExample();
 		examle.createCriteria().andIdEqualTo(id);
 		int result = dao.updateByExampleSelective(d, examle);
@@ -93,7 +90,7 @@ public class DictServiceImpl implements DictService {
 	public Integer deleteDict(List<String> codes) {
 		
 		DictExample example = new DictExample();
-		example.createCriteria().andDictCodeIn(codes);
+		example.createCriteria().andIdIn(codes);
 		int result = dao.deleteByExample(example);
 		deleteDictByParentCode(codes);
 		if(result > 0) {
