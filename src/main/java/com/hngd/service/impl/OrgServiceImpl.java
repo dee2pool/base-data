@@ -58,7 +58,7 @@ public class OrgServiceImpl implements OrgService
     private DomainOrgMapper domainOrgDao;
 
     @Override
-    public Result<String> addOrgnization(Organization org, String areaCode, String domainCode)
+    public Result<String> addOrgnization(Organization org, String areaCode)
     {
         if (StringUtils.isEmpty(areaCode)){
             logger.debug("the org is null or areaCode is empty");
@@ -79,12 +79,6 @@ public class OrgServiceImpl implements OrgService
         org.setCode(orgCode);
         
         if (orgDao.insertSelective(org) > 0){
-			DomainOrgKey domainOrg=new DomainOrgKey();
-			domainOrg.setDomainCode(domainCode);
-			domainOrg.setOrgCode(orgCode);
-			if(domainOrgDao.insertSelective(domainOrg)<0)  {
-				throw new DBErrorException();
-			}
             return Results.newSuccessResult(orgCode);
         } else{
             return Results.newFailResult(ErrorCode.DB_ERROR,"组织数据写入数据库失败");

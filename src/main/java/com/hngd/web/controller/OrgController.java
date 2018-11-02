@@ -79,13 +79,13 @@ public class OrgController {
 	@ResponseBody
 	@PostMapping("/add")
 	public RestResponse<String> addOrg(@RequestBody @RequestParam("org") Organization org,
-			@RequestParam("areaCode") String areaCode, @RequestParam("domainCode") String domainCode) {
+			@RequestParam("areaCode") String areaCode) {
 		
 		UserCredential credential=(UserCredential) HttpRequestContext.getRequestTag();
 		org.setCreateTime(new Date());
 		org.setCreatorId(credential.getId());
 		
-		Result<String> result = orgService.addOrgnization(org, areaCode, domainCode);
+		Result<String> result = orgService.addOrgnization(org, areaCode);
 		if (result.isSuccess()) {
 			// 通知内存中的组织结构信息需要更新
 			return RestResponses.newSuccessResponse("添加组织机构成功", 1, result.getData());
