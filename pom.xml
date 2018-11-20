@@ -88,13 +88,13 @@
 	<repositories>
 		<repository>
 			<id>hnlocal</id>
-			<name>hnlocal maven</name>
+			<name>hnlocal</name>
 			<url>http://192.168.0.143:8082/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 	</repositories>
